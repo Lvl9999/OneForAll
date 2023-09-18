@@ -95,7 +95,7 @@ task.spawn(function()
                     getgenv().Rejoined = true
                 end
             end
-            wait(1.15);
+            wait(2.15);
         end
     end
 end)
