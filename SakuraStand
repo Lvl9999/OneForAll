@@ -1,12 +1,46 @@
 -- Source ripped off from my hub [Put on autoexe]
 
+-- getgenv().NotifyWebHook = "WebHookUrl" -- If you want to be notified everytime you get a OFA
+
 getgenv().Farming = true
 getgenv().AutoAFOStore = true
+getgenv().NotifyWhenGet = true
 
 repeat wait() until game:IsLoaded();
+task.spawn(function()
+    while getgenv().NotifyWhenGet == true do
+        if game:GetService("Players").LocalPlayer.Data.StandName.Value == "One For All [Stage 1]" then
+            if not getgenv().NotifyNow == true then
+                pcall(function()
+                    local data = {
+                        ["content"] = " Well well well looks like you got a OFA! 🎉🎊",
+                        ["embeds"] = {
+                            {
+                                ["title"] = "**Congrats 💖**",
+                                ["type"] = "rich",
+                                ["color"] = tonumber(0x228B22),
+                            }
+                        }
+                     }
+                     local newdata = game:GetService("HttpService"):JSONEncode(data)
+
+                     local headers = {
+                        ["content-type"] = "application/json"
+                     }
+                     request = http_request or request or HttpPost or syn.request
+                     local abcdef = {Url = getgenv().NotifyWebHook, Body = newdata, Method = "POST", Headers = headers}
+                     request(abcdef)
+                end)
+                getgenv().NotifyNow = true
+            end
+        end
+        wait(1)
+    end
+end)
+
 wait(2.15);
 pcall(function()
-    for i = 1,120 do
+    for i = 1,150 do
         local vim = game:GetService('VirtualInputManager')
         local x = game:GetService('Players').LocalPlayer.PlayerGui.Loading.BG.SkipButton
 
@@ -58,6 +92,7 @@ task.spawn(function()
                     else
                         print("Couldn't find a server.")
                     end
+                    getgenv().Rejoined = true
                 end
             end
             wait(1.15);
@@ -317,3 +352,7 @@ task.spawn(function()
         wait(3.5);
     end
 end)
+
+
+
+
