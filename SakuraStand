@@ -63,7 +63,7 @@ task.spawn(function()
                 end)
                 getgenv().NotifyNow = true
             end
-            wait(0.15);
+            wait(0.35);
         end
     end
 end)
