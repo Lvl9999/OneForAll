@@ -30,7 +30,7 @@ task.spawn(function()
 end)
 
 task.spawn(function()
-    while getgenv().NotifyWhenGet == true do
+    while getgenv().NotifyWhenGet == true do wait(0.35);
     if workspace.Map.NPCs:FindFirstChild("AFO") then
             if not getgenv().NotifyNow == true then
                 pcall(function()
@@ -63,14 +63,13 @@ task.spawn(function()
                 end)
                 getgenv().NotifyNow = true
             end
-            wait(0.35);
         end
     end
 end)
 
 wait(2.15);
 pcall(function()
-    for i = 1,200 do
+    for i = 1,250 do
         local vim = game:GetService('VirtualInputManager')
         local x = game:GetService('Players').LocalPlayer.PlayerGui.Loading.BG.SkipButton
 
