@@ -62,7 +62,7 @@ end)
 
 wait(2.15);
 pcall(function()
-    for i = 1,150 do
+    for i = 1,200 do
         local vim = game:GetService('VirtualInputManager')
         local x = game:GetService('Players').LocalPlayer.PlayerGui.Loading.BG.SkipButton
 
@@ -78,50 +78,7 @@ pcall(function()
     end
 end)
 
-wait(5);
-task.spawn(function()
-    while getgenv().Farming == true do
-        if workspace.Map.NPCs:FindFirstChild("AFO") then
-            pcall(function()
-                for i,v in pairs(workspace.Map.NPCs.AFO:GetChildren()) do
-                    if v:IsA("ClickDetector") then
-                        task.spawn(function()
-                            Notif:Notification("Flame's Hub 🔥", "AFO Spawned!", "GothamSemibold", "Gotham", 5);
-                        end)
-                        fireclickdetector(v);
-                        wait(0.5);
-                        for i = 1,15 do wait(0.15);
-                            local vim = game:GetService'VirtualInputManager'
-                            local x = game:GetService("Players").LocalPlayer.PlayerGui.Dialogue.Outer.Inner.TextLabel
-
-                            vim:SendMouseButtonEvent(x.AbsolutePosition.X+x.AbsoluteSize.X/2,x.AbsolutePosition.Y+50,0,true,x,1);
-                            vim:SendMouseButtonEvent(x.AbsolutePosition.X+x.AbsoluteSize.X/2,x.AbsolutePosition.Y+50,0,false,x,1);
-                        end
-                    end
-                end
-            end)
-        else wait(0.15);
-            if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then
-                if not getgenv().Rejoined == true then
-                    local servers = {}
-                    for _, server in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
-                       if type(server) == "table" and server.maxPlayers > server.playing and server.id ~= game.JobId then
-                            table.insert(servers, server.id)
-                        end
-                    end
-                    if #servers > 0 then
-                        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, servers[math.random(1, #servers)])
-                    else
-                        print("Couldn't find a server.")
-                    end
-                    getgenv().Rejoined = true
-                end
-            end
-            wait(2.15);
-        end
-    end
-end)
-
+wait(2);
 task.spawn(function()
     while getgenv().AutoAFOStore == true do
         pcall(function()
@@ -371,7 +328,50 @@ task.spawn(function()
                 end
             end
         end)
-        wait(3.5);
+        wait(0.5);
+    end
+end)
+
+task.spawn(function()
+    while getgenv().Farming == true do
+        if workspace.Map.NPCs:FindFirstChild("AFO") then
+            pcall(function()
+                for i,v in pairs(workspace.Map.NPCs.AFO:GetChildren()) do
+                    if v:IsA("ClickDetector") then
+                        task.spawn(function()
+                            Notif:Notification("Flame's Hub 🔥", "AFO Spawned!", "GothamSemibold", "Gotham", 5);
+                        end)
+                        fireclickdetector(v);
+                        wait(0.5);
+                        for i = 1,15 do wait(0.15);
+                            local vim = game:GetService'VirtualInputManager'
+                            local x = game:GetService("Players").LocalPlayer.PlayerGui.Dialogue.Outer.Inner.TextLabel
+
+                            vim:SendMouseButtonEvent(x.AbsolutePosition.X+x.AbsoluteSize.X/2,x.AbsolutePosition.Y+50,0,true,x,1);
+                            vim:SendMouseButtonEvent(x.AbsolutePosition.X+x.AbsoluteSize.X/2,x.AbsolutePosition.Y+50,0,false,x,1);
+                        end
+                    end
+                end
+            end)
+        else wait(1);
+            if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then wait(1)
+                if not getgenv().Rejoined == true then
+                    local servers = {}
+                    for _, server in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
+                       if type(server) == "table" and server.maxPlayers > server.playing and server.id ~= game.JobId then
+                            table.insert(servers, server.id)
+                        end
+                    end
+                    if #servers > 0 then
+                        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, servers[math.random(1, #servers)])
+                    else
+                        print("Couldn't find a server.")
+                    end
+                    getgenv().Rejoined = true
+                end
+            end
+            wait(1);
+        end
     end
 end)
 
