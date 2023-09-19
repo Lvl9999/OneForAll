@@ -89,24 +89,26 @@ task.spawn(function()
     end
 end)
 
-pcall(function()
-    for i = 1,250 do
-        local vim = game:GetService('VirtualInputManager')
-        local x = game:GetService('Players').LocalPlayer.PlayerGui.Loading.BG.SkipButton
+task.spawn(function()
+    pcall(function()
+        for i = 1,250 do
+            local vim = game:GetService('VirtualInputManager')
+            local x = game:GetService('Players').LocalPlayer.PlayerGui.Loading.BG.SkipButton
 
-        vim:SendMouseButtonEvent(x.AbsolutePosition.X + x.AbsoluteSize.X / 2, x.AbsolutePosition.Y + 50, 0, true, x, 1);
-        vim:SendMouseButtonEvent(x.AbsolutePosition.X + x.AbsoluteSize.X / 2, x.AbsolutePosition.Y + 50, 0, false, x, 1);
+            vim:SendMouseButtonEvent(x.AbsolutePosition.X + x.AbsoluteSize.X / 2, x.AbsolutePosition.Y + 50, 0, true, x, 1);
+            vim:SendMouseButtonEvent(x.AbsolutePosition.X + x.AbsoluteSize.X / 2, x.AbsolutePosition.Y + 50, 0, false, x, 1);
 
-        local vim = game:GetService('VirtualInputManager')
-        local x = game:GetService('Players').LocalPlayer.PlayerGui.FrontMenu.Play
+            local vim = game:GetService('VirtualInputManager')
+            local x = game:GetService('Players').LocalPlayer.PlayerGui.FrontMenu.Play
 
-        vim:SendMouseButtonEvent(x.AbsolutePosition.X + x.AbsoluteSize.X / 2, x.AbsolutePosition.Y + 50, 0, true, x, 1);
-        vim:SendMouseButtonEvent(x.AbsolutePosition.X + x.AbsoluteSize.X / 2, x.AbsolutePosition.Y + 50, 0, false, x, 1);
-        wait(0.0015);
-    end
+            vim:SendMouseButtonEvent(x.AbsolutePosition.X + x.AbsoluteSize.X / 2, x.AbsolutePosition.Y + 50, 0, true, x, 1);
+            vim:SendMouseButtonEvent(x.AbsolutePosition.X + x.AbsoluteSize.X / 2, x.AbsolutePosition.Y + 50, 0, false, x, 1);
+            wait(0.0015);
+        end
+    end)
 end)
 
-wait(2);
+wait(1);
 task.spawn(function()
     while getgenv().AutoAFOStore == true do
         pcall(function()
@@ -398,7 +400,7 @@ task.spawn(function()
                     getgenv().Rejoined = true
                 end
             end
-            wait(2);
+            wait(1);
         end
     end
 end)
