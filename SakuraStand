@@ -8,6 +8,7 @@ getgenv().NotifyWhenGet = true
 getgenv().AutoServerHopUponKick = true
 
 repeat wait() until game:IsLoaded();
+wait(0.5);
 task.spawn(function()
     while getgenv().AutoServerHopUponKick == true do
         if game.CoreGui.RobloxPromptGui.promptOverlay:FindFirstChild("ErrorPrompt") then
@@ -82,7 +83,6 @@ task.spawn(function()
     end
 end)
 
-wait(2.15);
 pcall(function()
     for i = 1,250 do
         local vim = game:GetService('VirtualInputManager')
