@@ -32,7 +32,6 @@ end)
 task.spawn(function()
     while getgenv().NotifyWhenGet == true do
     if workspace.Map.NPCs:FindFirstChild("AFO") then
-        if game:GetService("Players").LocalPlayer.Data.StandName.Value == "One For All [Stage 1]" then
             if not getgenv().NotifyNow == true then
                 pcall(function()
                     local data = {
@@ -64,7 +63,6 @@ task.spawn(function()
                 end)
                 getgenv().NotifyNow = true
             end
-        end
             wait(0.15);
         end
     end
