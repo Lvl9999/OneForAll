@@ -31,6 +31,7 @@ end)
 
 task.spawn(function()
     while getgenv().NotifyWhenGet == true do
+    if workspace.Map.NPCs:FindFirstChild("AFO") then
         if game:GetService("Players").LocalPlayer.Data.StandName.Value == "One For All [Stage 1]" then
             if not getgenv().NotifyNow == true then
                 pcall(function()
@@ -52,11 +53,20 @@ task.spawn(function()
                      request = http_request or request or HttpPost or syn.request
                      local abcdef = {Url = getgenv().NotifyWebHook, Body = newdata, Method = "POST", Headers = headers}
                      request(abcdef)
+                     local Sound = Instance.new("Sound");
+                     Sound.Name = "Sound"
+                     Sound.SoundId = "http://www.roblox.com/asset/?id=4569628201"
+                     Sound.Volume = 10
+                     Sound.Looped = true
+                     Sound.archivable = false
+                     Sound.Parent = game.Workspace
+                     Sound:Play();
                 end)
                 getgenv().NotifyNow = true
             end
         end
-        wait(0.35)
+            wait(0.15);
+        end
     end
 end)
 
@@ -328,7 +338,7 @@ task.spawn(function()
                 end
             end
         end)
-        wait(0.5);
+        wait(0.35);
     end
 end)
 
@@ -370,11 +380,7 @@ task.spawn(function()
                     getgenv().Rejoined = true
                 end
             end
-            wait(1);
+            wait(2);
         end
     end
 end)
-
-
-
-
