@@ -65,21 +65,25 @@ task.spawn(function()
                 getgenv().NotifyNow = true
             end
         else
-            if not getgenv().Rejoined == true then
-                pcall(function()
-                    local servers = {}
-                    for _, server in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
-                       if type(server) == "table" and server.maxPlayers > server.playing and server.id ~= game.JobId then
-                            table.insert(servers, server.id)
-                        end
+            if getgenv().FastVersion == true then
+                if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then
+                    if not getgenv().Rejoined == true then
+                        pcall(function()
+                            local servers = {}
+                            for _, server in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
+                               if type(server) == "table" and server.maxPlayers > server.playing and server.id ~= game.JobId then
+                                    table.insert(servers, server.id)
+                                end
+                            end
+                            if #servers > 0 then
+                                game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, servers[math.random(1, #servers)])
+                            else
+                                print("Couldn't find a server.")
+                            end
+                            getgenv().Rejoined = true
+                        end)
                     end
-                    if #servers > 0 then
-                        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, servers[math.random(1, #servers)])
-                    else
-                        print("Couldn't find a server.")
-                    end
-                    getgenv().Rejoined = true
-                end)
+                end
             end
         end
     end
