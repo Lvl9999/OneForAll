@@ -2,7 +2,7 @@
 
 Most OP script ever (I generate 3 dekus per day on average).
 
-# How to farm:
+## How to farm:
 1. Put this script in the "Autoexe" folder.
 
 ```lua
@@ -15,7 +15,7 @@ if getgenv().Start == true then
 end
 ```
 
-# How to fuse:
+## How to fuse:
 
 1. Set up a program called MultiBlox (Download: https://robloxscripts.com/multibox-uwp-instance-manager-free-tool/ )
 2. Add your ALT account (Must be 2 months old to play Sakura Stand) (you can use Pulsive's alt gen: https://discord.gg/GDN6ua59 (Their Discord)
