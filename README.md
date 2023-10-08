@@ -19,10 +19,10 @@ end
 
 1. Set up a program called MultiBlox (Download: https://robloxscripts.com/multibox-uwp-instance-manager-free-tool/ )
 2. Add your ALT account (Must be 2 months old to play Sakura Stand) (you can use Pulsive's alt gen: https://discord.gg/GDN6ua59
-3. Get that ALT to mastery 3 (Using my OP hub: https://github.com/Lvl9999/Flames )
-4. Join both your main and alt to a public/vip
+3. Get that ALT to mastery 3 (Using my OP hub: https://github.com/Lvl9999/Flames ).
+4. Join both your main and alt to a public/vip.
 
-5.
+5. Execute this script.
 ```lua
 getgenv().StartFusing = true -- true/false  | (true = start),(false = stop)
 getgenv().MainAccount = "Username1" -- The Account that will used to fuse the stages to the "Holder Account" and will recieve it back.
