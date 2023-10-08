@@ -1,0 +1,103 @@
+task.spawn(function()
+    while getgenv().StartFusing == true do wait(0.15)
+        pcall(function()
+
+            if game:GetService("Players").LocalPlayer.Data.StandName.Value == "One For All [Stage 1]" and game:GetService("Players")[getgenv().HolderAccount].Data.StandName.Value == "One For All [Stage 1]" then
+                if game:GetService("Players").LocalPlayer.Name == getgenv().MainAccount then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players[getgenv().HolderAccount].Character.HumanoidRootPart.Position - game.Players[getgenv().HolderAccount].Character.HumanoidRootPart.CFrame.LookVector * 3);
+                    game:GetService("ReplicatedStorage"):WaitForChild("OFARemote"):WaitForChild("Passdown"):FireServer();
+                end
+            end
+
+            if game:GetService("Players").LocalPlayer.Data.StandName.Value == "One For All [Stage 2]" and game:GetService("Players")[getgenv().HolderAccount].Data.StandName.Value == "One For All [Stage 2]" then
+                if game:GetService("Players").LocalPlayer.Name == getgenv().MainAccount then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players[getgenv().HolderAccount].Character.HumanoidRootPart.Position - game.Players[getgenv().HolderAccount].Character.HumanoidRootPart.CFrame.LookVector * 3);
+                    game:GetService("ReplicatedStorage"):WaitForChild("OFARemote"):WaitForChild("Passdown"):FireServer();
+                end
+            end
+
+            if game:GetService("Players").LocalPlayer.Data.StandName.Value == "One For All [Stage 3]" and game:GetService("Players")[getgenv().HolderAccount].Data.StandName.Value == "One For All [Stage 3]" then
+                if game:GetService("Players").LocalPlayer.Name == getgenv().MainAccount then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players[getgenv().HolderAccount].Character.HumanoidRootPart.Position - game.Players[getgenv().HolderAccount].Character.HumanoidRootPart.CFrame.LookVector * 3);
+                    game:GetService("ReplicatedStorage"):WaitForChild("OFARemote"):WaitForChild("Passdown"):FireServer();
+                end
+            end
+
+            pcall(function()
+                if game:GetService("Players")[getgenv().HolderAccount].Data.StandName.Value == "One For All [Stage 1]" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then
+                    for i = 1,500 do
+                        if game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Outer.Inner.Inner["Slot".. i].Text.Text == "One For All [Stage 1]" then
+                            if i < 7 then
+                                game:GetService("ReplicatedStorage").StorageRemote["Slot"..i]:FireServer();
+                            else
+                                local args = {"Slot"..i}
+                                game:GetService("ReplicatedStorage").StorageRemote.UseStorageExtra:FireServer(unpack(args));
+                            end
+                        end
+                    end
+                end
+            end)
+
+            pcall(function()
+                if game:GetService("Players")[getgenv().HolderAccount].Data.StandName.Value == "One For All [Stage 2]" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then
+                    for i = 1,500 do
+                        if game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Outer.Inner.Inner["Slot"..i].Text.Text == "One For All [Stage 2]" then
+                            if i < 7 then
+                                game:GetService("ReplicatedStorage").StorageRemote["Slot"..i]:FireServer();
+                            else
+                                local args = {"Slot"..i}
+                                game:GetService("ReplicatedStorage").StorageRemote.UseStorageExtra:FireServer(unpack(args));
+                            end
+                        end
+                    end
+                end
+            end)
+
+            pcall(function()
+                if game:GetService("Players")[getgenv().HolderAccount].Data.StandName.Value == "One For All [Stage 3]" or game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then
+                    for i = 1,500 do
+                        if game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Outer.Inner.Inner["Slot"..i].Text.Text == "One For All [Stage 3]" then
+                            if i < 7 then
+                                game:GetService("ReplicatedStorage").StorageRemote["Slot"..i]:FireServer();
+                            else
+                                local args = {"Slot"..i};
+                                game:GetService("ReplicatedStorage").StorageRemote.UseStorageExtra:FireServer(unpack(args));
+                            end
+                        end
+                    end
+                end
+            end)
+        end)
+    end
+end)
+
+task.spawn(function()
+    while getgenv().StartFusing == true do wait(0.15);
+        pcall(function()
+            local args = {[1] = "!trade "..getgenv().MainAccount};
+            game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Chatted"):FireServer(unpack(args));
+            local args = {[1] = "!trade "..getgenv().HolderAccount};
+            game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Chatted"):FireServer(unpack(args));
+        end)
+    end
+end)
+
+task.spawn(function()
+    while getgenv().StartFusing == true do wait(3);
+        if not game:GetService("Players").LocalPlayer.Data:FindFirstChild("TradeCD") then wait(0.15);
+            pcall(function()
+                local InputManager = game:GetService'VirtualInputManager'
+                local Path = game:GetService("Players").LocalPlayer.PlayerGui.TradeConfirmation.Outer.Confirm
+
+                game:GetService("ReplicatedStorage"):WaitForChild("TradingRemote"):WaitForChild("AddStand"):FireServer();
+                task.wait(0.35);
+                game:GetService("ReplicatedStorage"):WaitForChild("TradingRemote"):WaitForChild("AddStand"):FireServer();
+                task.wait(0.35);
+                game:GetService("ReplicatedStorage"):WaitForChild("TradingRemote"):WaitForChild("Accept"):FireServer();
+                task.wait(0.55);
+                InputManager:SendMouseButtonEvent(Path.AbsolutePosition.X+Path.AbsoluteSize.X/2,Path.AbsolutePosition.Y+50,0,true,Path,1);
+                InputManager:SendMouseButtonEvent(Path.AbsolutePosition.X+Path.AbsoluteSize.X/2,Path.AbsolutePosition.Y+50,0,false,Path,1);
+            end)
+        end
+    end
+end)
