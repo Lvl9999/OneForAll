@@ -16,7 +16,7 @@ end
 ```
 
 ## How to fuse:
-(You must have multiple Stage 1)
+(You must have multiple stage 1 in storage)
 1. Set up a program called MultiBlox (Download: https://robloxscripts.com/multibox-uwp-instance-manager-free-tool/ )
 2. Add your ALT account (Must be 2 months old to play Sakura Stand) (you can use Pulsive's alt gen: https://discord.gg/GDN6ua59
 3. Get that ALT to mastery 3 (Using my OP hub: https://github.com/Lvl9999/Flames ).
