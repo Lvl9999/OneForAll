@@ -32,3 +32,7 @@ getgenv().HolderAccount = "Username2" -- The Account that will be used to be use
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/OneForAll/main/StageFuser"))();
 ```
 6. Run the script and youre done 🎖️
+
+
+# Pro tip:
+Use my hub... For starter try to obtain intelligent title. it cost 2 bps then try to achieve enough breakthroughs like 10 or 20 for stand storages only!, and grind cash to buy storages.
