@@ -68,22 +68,25 @@ task.spawn(function()
 end)
 wait(1);
 task.spawn(function()
-    pcall(function()
-        for i = 1,300 do
-            local vim = game:GetService('VirtualInputManager')
-            local x = game:GetService('Players').LocalPlayer.PlayerGui.Loading.BG.SkipButton
+    while getgenv().Farming == true do
+        pcall(function()
+            for i = 1,5 do wait(0.25);
+                local vim = game:GetService('VirtualInputManager')
+                local x = game:GetService('Players').LocalPlayer.PlayerGui.Loading.BG.SkipButton
 
-            vim:SendMouseButtonEvent(x.AbsolutePosition.X + x.AbsoluteSize.X / 2, x.AbsolutePosition.Y + 50, 0, true, x, 1);
-            vim:SendMouseButtonEvent(x.AbsolutePosition.X + x.AbsoluteSize.X / 2, x.AbsolutePosition.Y + 50, 0, false, x, 1);
+                vim:SendMouseButtonEvent(x.AbsolutePosition.X + x.AbsoluteSize.X / 2, x.AbsolutePosition.Y + 50, 0, true, x, 1);
+                vim:SendMouseButtonEvent(x.AbsolutePosition.X + x.AbsoluteSize.X / 2, x.AbsolutePosition.Y + 50, 0, false, x, 1);
 
-            local vim = game:GetService('VirtualInputManager')
-            local x = game:GetService('Players').LocalPlayer.PlayerGui.FrontMenu.Play
+                local vim = game:GetService('VirtualInputManager')
+                local x = game:GetService('Players').LocalPlayer.PlayerGui.FrontMenu.Play
 
-            vim:SendMouseButtonEvent(x.AbsolutePosition.X + x.AbsoluteSize.X / 2, x.AbsolutePosition.Y + 50, 0, true, x, 1);
-            vim:SendMouseButtonEvent(x.AbsolutePosition.X + x.AbsoluteSize.X / 2, x.AbsolutePosition.Y + 50, 0, false, x, 1);
-            wait(0.0015);
-        end
-    end)
+                vim:SendMouseButtonEvent(x.AbsolutePosition.X + x.AbsoluteSize.X / 2, x.AbsolutePosition.Y + 50, 0, true, x, 1);
+                vim:SendMouseButtonEvent(x.AbsolutePosition.X + x.AbsoluteSize.X / 2, x.AbsolutePosition.Y + 50, 0, false, x, 1);
+                wait(0.0015);
+            end
+        end)
+        wait(1);
+    end
 end)
 
 wait(1);
