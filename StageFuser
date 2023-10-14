@@ -1,3 +1,4 @@
+-- Script was made by ThroughTheFireAndFlames#9925
 task.spawn(function()
     while getgenv().StartFusing == true do wait(0.15)
         pcall(function()
