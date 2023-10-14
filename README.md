@@ -1,5 +1,7 @@
 # One For All Farmer
 
+Script was made by ThroughTheFireAndFlames#9925
+
 Most OP script ever (I generate 3 dekus per day on average).
 
 ## How to farm:
