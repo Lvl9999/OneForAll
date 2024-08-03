@@ -1,4 +1,5 @@
 -- Script was made by ThroughTheFireAndFlames#9925
+-- DO not touch for now (Unspecified variables)
 task.spawn(function()
     while getgenv().StartFusing == true do wait(0.15)
         pcall(function()
