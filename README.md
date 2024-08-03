@@ -1,5 +1,6 @@
 ## Auto One For All Farmer 🟢🔴
 ### Now featuring "Auto find One For All"!
+#### Be Standless and have Standless slots
 
 ```lua
 getgenv().AutoFindingOneForAll = true;
