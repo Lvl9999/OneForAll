@@ -1,155 +1,113 @@
--- Script was made by ThroughTheFireAndFlames#9925
--- Source ripped off from my hub [Put on autoexe]
+-- // getgenv().AutoFindingOneForAll = true -- // Old script (Very lazy).
 
--- getgenv().NotifyWebHook = "WebHookUrl" -- If you want to be notified everytime you get a OFA
+local AutoExec = game
+repeat wait() until AutoExec:IsLoaded();
 
-getgenv().Farming = true
-getgenv().AutoAFOStore = true
-getgenv().NotifyWhenGet = true
-
-repeat wait() until game:IsLoaded();
-wait(1);
 task.spawn(function()
-    while getgenv().NotifyWhenGet == true do wait(0.35);
-    if workspace.Map.NPCs:FindFirstChild("AFO") then
-            if not getgenv().NotifyNow == true then
-                pcall(function()
-                    local data = {
-                        ["content"] = " Well well well looks like you got a OFA! 🎉🎊",
-                        ["embeds"] = {
-                            {
-                                ["title"] = "**Congrats 💖**",
-                                ["type"] = "rich",
-                                ["color"] = tonumber(0x228B22),
-                            }
-                        }
-                     }
-                     local newdata = game:GetService("HttpService"):JSONEncode(data)
-
-                     local headers = {
-                        ["content-type"] = "application/json"
-                     }
-                     request = http_request or request or HttpPost or syn.request
-                     local abcdef = {Url = getgenv().NotifyWebHook, Body = newdata, Method = "POST", Headers = headers}
-                     request(abcdef)
-                     local Sound = Instance.new("Sound");
-                     Sound.Name = "Sound"
-                     Sound.SoundId = "http://www.roblox.com/asset/?id=4569628201"
-                     Sound.Volume = 10
-                     Sound.Looped = true
-                     Sound.archivable = false
-                     Sound.Parent = game.Workspace
-                     Sound:Play();
-                end)
-                getgenv().NotifyNow = true
-            end
-        else
-            if getgenv().FastVersion == true then
-                if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then
-                    if not getgenv().Rejoined == true then
-                        pcall(function()
-                            local servers = {}
-                            for _, server in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
-                               if type(server) == "table" and server.maxPlayers > server.playing and server.id ~= game.JobId then
-                                    table.insert(servers, server.id)
-                                end
-                            end
-                            if #servers > 0 then
-                                game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, servers[math.random(1, #servers)])
-                            else
-                                print("Couldn't find a server.")
-                            end
-                            getgenv().Rejoined = true
-                        end)
-                    end
-                end
-            end
-        end
-    end
-end)
-wait(1);
-task.spawn(function()
-    while getgenv().Farming == true do
+    while getgenv().AutoFindingOneForAll  == true do wait(10);
         pcall(function()
-            for i = 1,5 do wait(0.25);
-                local vim = game:GetService('VirtualInputManager')
-                local x = game:GetService('Players').LocalPlayer.PlayerGui.Loading.BG.SkipButton
-
-                vim:SendMouseButtonEvent(x.AbsolutePosition.X + x.AbsoluteSize.X / 2, x.AbsolutePosition.Y + 50, 0, true, x, 1);
-                vim:SendMouseButtonEvent(x.AbsolutePosition.X + x.AbsoluteSize.X / 2, x.AbsolutePosition.Y + 50, 0, false, x, 1);
-
-                local vim = game:GetService('VirtualInputManager')
-                local x = game:GetService('Players').LocalPlayer.PlayerGui.FrontMenu.Play
-
-                vim:SendMouseButtonEvent(x.AbsolutePosition.X + x.AbsoluteSize.X / 2, x.AbsolutePosition.Y + 50, 0, true, x, 1);
-                vim:SendMouseButtonEvent(x.AbsolutePosition.X + x.AbsoluteSize.X / 2, x.AbsolutePosition.Y + 50, 0, false, x, 1);
-                wait(0.0015);
-            end
-        end)
-        wait(1);
-    end
-end)
-
-wait(1);
-task.spawn(function()
-while getgenv().AutoAFOStore == true do
-    pcall(function()
-        if game:GetService("Players").LocalPlayer.Data.StandName.Value == "One For All [Stage 1]" then
-            for i = 1,500 do
-                if game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Outer.Inner.Inner["Slot"..i].Text.Text == "Standless" then
-                    if i < 7 then
-                        game:GetService("ReplicatedStorage").StorageRemote["Slot"..i]:FireServer()
-                    else
-                        local args = {"Slot"..i}
-                        game:GetService("ReplicatedStorage").StorageRemote.UseStorageExtra:FireServer(unpack(args))
-                    end
-                end
-            end
-        end
-    end)
-    wait(0.35);
-end
-end)
-
-task.spawn(function()
-    while getgenv().Farming == true do
-        if workspace.Map.NPCs:FindFirstChild("AFO") then
-            pcall(function()
-                for i,v in pairs(workspace.Map.NPCs.AFO:GetChildren()) do
-                    if v:IsA("ClickDetector") then
-                        task.spawn(function()
-                            Notif:Notification("Flame's Hub 🔥", "AFO Spawned!", "GothamSemibold", "Gotham", 5);
-                        end)
-                        fireclickdetector(v);
-                        wait(0.5);
-                        for i = 1,15 do wait(0.15);
-                            local vim = game:GetService'VirtualInputManager'
-                            local x = game:GetService("Players").LocalPlayer.PlayerGui.Dialogue.Outer.Inner.TextLabel
-
-                            vim:SendMouseButtonEvent(x.AbsolutePosition.X+x.AbsoluteSize.X/2,x.AbsolutePosition.Y+50,0,true,x,1);
-                            vim:SendMouseButtonEvent(x.AbsolutePosition.X+x.AbsoluteSize.X/2,x.AbsolutePosition.Y+50,0,false,x,1);
-                        end
-                    end
-                end
-            end)
-        else wait(1);
-            if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then wait(1)
-                if not getgenv().Rejoined == true then
+            if game.CoreGui.RobloxPromptGui.promptOverlay:FindFirstChild("ErrorPrompt") then
+                repeat
                     local servers = {}
                     for _, server in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
-                       if type(server) == "table" and server.maxPlayers > server.playing and server.id ~= game.JobId then
-                            table.insert(servers, server.id)
+                        if type(server) == "table" and server.maxPlayers > server.playing and server.id ~= game.JobId then
+                            table.insert(servers, server.id);
                         end
                     end
                     if #servers > 0 then
-                        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, servers[math.random(1, #servers)])
+                        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, servers[math.random(1, #servers)]);
                     else
-                        print("Couldn't find a server.")
+                        print("Couldn't find a server.");
                     end
-                    getgenv().Rejoined = true
+                    wait(5);
+                until false
+            end
+        end)
+    end
+end)
+
+task.spawn(function()
+    while getgenv().AutoFindingOneForAll  == true do wait(1);
+        pcall(function()
+            local vim = game:GetService('VirtualInputManager')
+            local x2 = game:GetService("Players").LocalPlayer.PlayerGui.MainMenu.Buttons.Play.TextLabel
+            local x1 = game:GetService("Players").LocalPlayer.PlayerGui.Loading.BG.SkipButton
+
+            vim:SendMouseButtonEvent(x2.AbsolutePosition.X + x2.AbsoluteSize.X / 5, x2.AbsolutePosition.Y + 50, 0, true, x2, 5);
+            vim:SendMouseButtonEvent(x2.AbsolutePosition.X + x2.AbsoluteSize.X / 5, x2.AbsolutePosition.Y + 50, 0, false, x2, 5);
+
+            vim:SendMouseButtonEvent(x1.AbsolutePosition.X + x1.AbsoluteSize.X / 5, x1.AbsolutePosition.Y + 50, 0, true, x1, 5);
+            vim:SendMouseButtonEvent(x1.AbsolutePosition.X + x1.AbsoluteSize.X / 5, x1.AbsolutePosition.Y + 50, 0, false, x1, 5);
+        end)
+    end
+end)
+
+task.spawn(function()
+    while getgenv().AutoFindingOneForAll  == true do wait(0.15);
+        pcall(function()
+            game:GetService("Players").LocalPlayer.PlayerGui.Loading.BG.SkipButton.Text = "Made By ThroughTheFireAndFlames#9925"
+            game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("Play"):FireServer();
+        end)
+    end
+end)
+
+task.spawn(function()
+    while getgenv().AutoFindingOneForAll  == true do task.wait(1);
+        pcall(function()
+            if  workspace.Map.NPCs:FindFirstChild("Kuzma") then
+                for i,v in pairs(game:GetService("Workspace").Map.NPCs.Kuzma:GetChildren()) do
+                    if v:IsA("ClickDetector") then
+                        fireclickdetector(v);
+                        for i = 1, 20 do
+                            task.wait(0.15);
+                            local vim = game:GetService('VirtualInputManager');
+                            local x = game:GetService("Players").LocalPlayer.PlayerGui.Dialogue.Outer.Inner.TextLabel
+
+                            vim:SendMouseButtonEvent(x.AbsolutePosition.X + x.AbsoluteSize.X / 2, x.AbsolutePosition.Y + 50, 0, true, x, 1);
+                            vim:SendMouseButtonEvent(x.AbsolutePosition.X + x.AbsoluteSize.X / 2, x.AbsolutePosition.Y + 50, 0, false, x, 1);
+                        end
+                    end
+                end
+            else
+                if game:GetService("Players").LocalPlayer.Data.StandName.Value == "Standless" then
+                    if not getgenv().Rejoined then
+                        local servers = {}
+                        local data = game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data
+                        for _, server in ipairs(data) do
+                            if type(server) == "table" and server.maxPlayers > server.playing and server.id ~= game.JobId then
+                                table.insert(servers, server.id)
+                            end
+                        end
+                        if #servers > 0 then
+                            game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, servers[math.random(1, #servers)]);
+                        else
+                            print("Couldn't find a server.");
+                        end
+                        getgenv().Rejoined = true
+                    end
                 end
             end
-            wait(1);
-        end
+        end)
+        task.wait(3.5);
+    end
+end)
+
+task.spawn(function()
+    while getgenv().AutoFindingOneForAll  == true do task.wait(1);
+        pcall(function()
+            if game:GetService("Players").LocalPlayer.Data.StandName.Value == "OA [Stage 1]" then
+                for i = 1,50 do
+                    if game:GetService("Players").LocalPlayer.PlayerGui.StandStorage.Outer.Inner.Inner["Slot"..i].Text.Text == "Standless" then
+                        local args = {"Slot"..i};
+                        if i <= 6 then
+                            game:GetService("ReplicatedStorage").StorageRemote["Slot"..i]:FireServer();
+                        else
+                            game:GetService("ReplicatedStorage").StorageRemote.UseStorageExtra:FireServer(unpack(args));
+                        end
+                    end
+                end
+            end
+        end)
+        task.wait(1);
     end
 end)
